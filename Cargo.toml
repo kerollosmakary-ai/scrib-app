@@ -1,0 +1,33 @@
+[package]
+name = "scrib"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Scrib — a terminal-style notepad with AI editing, clipboard intelligence, and an educational Alpine Linux workspace."
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+arboard = "3"
+crossterm = "0.29"
+directories = "6"
+portable-pty = "0.9"
+ratatui = "0.30"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "process", "fs", "sync", "time"] }
+
+[features]
+default = ["clipboard", "terminal"]
+clipboard = []
+terminal = []
+ai = []
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.dev]
+opt-level = 1
